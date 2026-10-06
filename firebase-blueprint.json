@@ -1,0 +1,122 @@
+{
+  "entities": {
+    "TabModule": {
+      "title": "TabModule",
+      "description": "Navigation tabs and subpages of the platform",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 100 },
+        "slug": { "type": "string", "maxLength": 50 },
+        "template": { "type": "string", "enum": ["academic", "portfolio", "services"] },
+        "description": { "type": "string", "maxLength": 500 },
+        "iconName": { "type": "string", "maxLength": 50 },
+        "isCustom": { "type": "boolean" },
+        "customContent": { "type": "string", "maxLength": 50000 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "slug", "template"]
+    },
+    "AcademicGuide": {
+      "title": "AcademicGuide",
+      "description": "Pedagogical academic guides for physical education",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "gradeId": { "type": "string", "maxLength": 10 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "title": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "dueDate": { "type": "string" },
+        "fileUrl": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "duration": { "type": "string", "maxLength": 50 },
+        "requirements": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "gradeId", "subject", "title", "description", "dueDate"]
+    },
+    "GroupSubmission": {
+      "title": "GroupSubmission",
+      "description": "Student homework and evidence submissions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "guideId": { "type": "string", "maxLength": 100 },
+        "gradeId": { "type": "string", "maxLength": 10 },
+        "groupNumber": { "type": "number" },
+        "members": { "type": "array" },
+        "videoEvidenceUrl": { "type": "string" },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "submittedAt": { "type": "string" },
+        "grade": { "type": "number" },
+        "feedback": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["submitted", "graded"] }
+      },
+      "required": ["id", "guideId", "gradeId", "groupNumber", "members", "submittedAt", "status"]
+    },
+    "PortfolioApp": {
+      "title": "PortfolioApp",
+      "description": "Software applications and code demos in tech portfolio",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "demoUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "codeSnippet": { "type": "string", "maxLength": 50000 },
+        "tags": { "type": "array" },
+        "badge": { "type": "string", "maxLength": 50 },
+        "featured": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "category", "description", "tags"]
+    },
+    "StoreItem": {
+      "title": "StoreItem",
+      "description": "Products and services offered in the store catalog",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 50 },
+        "price": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "imageUrl": { "type": "string" },
+        "features": { "type": "array" },
+        "inStock": { "type": "boolean" },
+        "badge": { "type": "string", "maxLength": 50 },
+        "whatsappMessage": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "category", "price", "currency", "description", "inStock"]
+    }
+  },
+  "firestore": {
+    "/platform_tabs/{tabId}": {
+      "schema": "TabModule",
+      "description": "Platform navigation modules and subpages"
+    },
+    "/academic_guides/{guideId}": {
+      "schema": "AcademicGuide",
+      "description": "Physical education guides and tasks"
+    },
+    "/ef_group_submissions/{submissionId}": {
+      "schema": "GroupSubmission",
+      "description": "Group homework and project submissions from students"
+    },
+    "/portfolio_applications/{appId}": {
+      "schema": "PortfolioApp",
+      "description": "Interactive web applications and source code demos"
+    },
+    "/store_inventory_and_services/{itemId}": {
+      "schema": "StoreItem",
+      "description": "Products and services available in the store"
+    }
+  }
+}

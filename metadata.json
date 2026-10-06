@@ -1,0 +1,6 @@
+{
+  "name": "Es Pa' Todo | Plataforma Modular",
+  "description": "Plataforma web modular de Rubén Darío Rincón Montoya con motores para LMS Académico (I.E. Ramón Múnera Lopera), Portafolio de Aplicaciones Tecnológicas y Catálogo de Servicios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
